@@ -55,11 +55,14 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'django_app.urls'
 
+# Django behind the scenes will merge all template files inside of found template folders.
+# Therefore, by convention, you would add another folder in each templates folder in each app
+# with the same name as the app. eg. meetups/templates/meetups
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [],
-        'APP_DIRS': True,
+        'APP_DIRS': True, # looks for a template folder inside each of the app directories
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
