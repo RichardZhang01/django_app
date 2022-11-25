@@ -6,4 +6,12 @@ from django.shortcuts import render
 
 
 def index(request):
-    return render(request, 'meetups/index.html')
+    meetups = [
+        {'title': 'A First Meetup', 'location': 'Toronto', 'slug': 'a-first-meetup'},
+        {'title': 'A Second Meetup', 'location': 'Ottawa', 'slug': 'a-second-meetup'},
+    ]
+    # request parses the file by finding specific Django-enabled code, executes them, then
+    # returns the finished file to the browser
+    return render(request, 'meetups/index.html', {
+        'meetups': meetups  # Passes the meetups list under the key 'meetups' to our template
+    })
