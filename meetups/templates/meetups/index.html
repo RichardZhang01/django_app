@@ -1,4 +1,4 @@
-<!-- Enable Django templating features -->
+<!-- Enable Django static tag commands -->
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -9,7 +9,10 @@
     <title>All Meetups</title>
     <!-- Tells Django where to look to inject our stylesheet from -->
     <link rel="stylesheet" href="{% static 'meetups/styles/base.css' %}" />
-    <link rel="stylesheet" href="{% static 'meetups/styles/all-meetups.css' %}" />
+    <link
+      rel="stylesheet"
+      href="{% static 'meetups/styles/all-meetups.css' %}"
+    />
   </head>
   <body>
     <header id="main-header">
@@ -26,7 +29,7 @@
             <article>
               <div class="meetup-summary">
                 <div class="meetup-image">
-                  <img src="" alt="">
+                  <img src="" alt="" />
                 </div>
                 <div class="meetup-details">
                   <h3>{{ meetup_item.title }}</h3>
@@ -34,7 +37,7 @@
                 </div>
               </div>
               <div class="meetup-actions">
-                <a href="" class="'btn">More Details</a>
+                <a href="" class="btn">More Details</a>
               </div>
             </article>
           </li>
