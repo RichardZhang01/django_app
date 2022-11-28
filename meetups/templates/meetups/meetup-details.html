@@ -7,7 +7,7 @@
 {% endblock%}
 
 {% block site_css %}
-    <link rel="stylesheet" href="{% static 'meetup/styles/meetup-details.css' %}">
+    <link rel="stylesheet" href="{% static 'meetups/styles/meetup-details.css' %}">
 {% endblock%}
 
 {% block main_heading %}
@@ -15,6 +15,8 @@
 {% endblock%}
 
 {% block body %}
+
+{% if meetup_found %}
     <article>
         <img src="" alt="">
 
@@ -36,4 +38,8 @@
             FORM
         </section>
     </article>
+{% else %}
+    <p>No meetup found for this slug.</p>
+{% endif %}
+    
 {% endblock%}

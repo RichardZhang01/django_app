@@ -1,27 +1,31 @@
 from django.shortcuts import render
 
+from .models import Meetup
+
 # Create your views here.
 
 # Django invokes this function automatically
 
 
 def index(request):
-    meetups = [
-        {'title': 'A First Meetup', 'location': 'Toronto', 'slug': 'a-first-meetup'},
-        {'title': 'A Second Meetup', 'location': 'Ottawa', 'slug': 'a-second-meetup'},
-    ]
+    meetups = Meetup.objects.all()
     # request parses the file by finding specific Django-enabled code, executes them, then
     # returns the finished file to the browser
     return render(request, 'meetups/index.html', {
-        'meetups': meetups  # Passes the meetups list under the key 'meetups' to our template
+        'meetups': meetups # Passes the meetups list under the key 'meetups' to our template
     })
 
 
 def meetup_details(request, meetup_slug):
-    selected_meetup = {'title': 'A First Meetup',
-                       'description': 'This is the first meetup'}
+    try:
+        selected_meetup = Meetup.objects.get(slug=meetup_slug)
 
-    return render(request, 'meetups/meetup-details.html', {
-        'meetup_title': selected_meetup['title'],
-        'meetup_description': selected_meetup['description'],
-    })
+        return render(request, 'meetups/meetup-details.html', {
+            'meetup_found': True,
+            'meetup_title': selected_meetup.title,
+            'meetup_description': selected_meetup.description,
+        })
+    except Exception as exc:
+        return render(request, 'meetups/meetup-details.html', { # Many ways to handle an endpoint that does not exist. Can use a different template, redirects, etc.
+            'meetup_found': False,
+        })
