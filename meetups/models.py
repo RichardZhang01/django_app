@@ -13,9 +13,11 @@ class Location(models.Model):
 
 class Participant(models.Model):
     email = models.EmailField(unique=True)
+    firstName = models.CharField(max_length=200)
+    lastName = models.CharField(max_length=200)
 
     def __str__(self):
-        return self.email
+        return f'{self.email} ({self.firstName} {self.lastName})'
 
 
 class Meetup(models.Model):

@@ -76,10 +76,11 @@ address span {
     border: 1px solid #4b4753;
     border-radius: 4px;
     padding: 0.25rem;
+    margin-bottom: 1rem;
 }
 
 #registration-actions {
-    margin-top: 1.5rem;
+    margin-top: 1rem;
 }
 
 #registration .errorlist {
