@@ -22,8 +22,7 @@ def meetup_details(request, meetup_slug):
 
         return render(request, 'meetups/meetup-details.html', {
             'meetup_found': True,
-            'meetup_title': selected_meetup.title,
-            'meetup_description': selected_meetup.description,
+            'meetup': selected_meetup
         })
     except Exception as exc:
         return render(request, 'meetups/meetup-details.html', { # Many ways to handle an endpoint that does not exist. Can use a different template, redirects, etc.
