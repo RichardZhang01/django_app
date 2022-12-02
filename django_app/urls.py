@@ -17,8 +17,10 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
+from django.views.generic.base import RedirectView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('meetups.urls')) # include all urls from another urlpatterns list with '' as a prefix
+    path('', RedirectView.as_view(url='/meetups')), # include all urls from another urlpatterns list with '' as a prefix
+    path('meetups/', include('meetups.urls'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) # To serve images, we add an additional static path that takes the MEDIA_URL argument imported from settings, and pass the MEDIA_ROOT argument also imported from setting to document_root to allow our app to find then display the images saved to our uploads/images folder.
